@@ -12,11 +12,11 @@
   <style>
     :root,
     [data-theme="light"] {
-      --text-xs: clamp(.75rem,.7rem + .25vw,.875rem);
-      --text-sm: clamp(.875rem,.8rem + .35vw,1rem);
-      --text-base: clamp(1rem,.95rem + .25vw,1.125rem);
-      --text-lg: clamp(1.125rem,1rem + .75vw,1.5rem);
-      --text-xl: clamp(1.5rem,1.2rem + 1.25vw,2.2rem);
+      --text-xs: clamp(.75rem, .7rem + .25vw, .875rem);
+      --text-sm: clamp(.875rem, .8rem + .35vw, 1rem);
+      --text-base: clamp(1rem, .95rem + .25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + .75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.2rem);
       --space-3: .75rem;
       --space-4: 1rem;
       --space-5: 1.25rem;
@@ -36,12 +36,12 @@
       --color-primary-hover: #085f5a;
       --color-warm: #f3c364;
       --color-accent: #ea8ca8;
-      --shadow-sm: 0 4px 14px rgba(70,45,30,.06);
+      --shadow-sm: 0 4px 14px rgba(70, 45, 30, .06);
       --radius-md: .95rem;
       --radius-lg: 1.35rem;
       --radius-full: 9999px;
-      --font-body: 'Manrope', Inter, sans-serif;
-      --font-display: 'Newsreader', Georgia, serif;
+      --font-body: "Manrope", Inter, sans-serif;
+      --font-display: "Newsreader", Georgia, serif;
       --content: 980px;
     }
 
@@ -81,7 +81,7 @@
       font-size: var(--text-base);
       line-height: 1.65;
       color: var(--color-text);
-      background: linear-gradient(180deg,#fffdfb 0%,var(--color-bg) 50%,var(--color-bg) 100%);
+      background: linear-gradient(180deg, #fffdfb 0%, var(--color-bg) 50%, var(--color-bg) 100%);
       background-color: var(--color-bg);
     }
 
@@ -158,6 +158,7 @@
       justify-content: center;
       border: 1px solid var(--color-border);
       background: var(--color-surface);
+      color: var(--color-text);
     }
 
     .pill-primary {
@@ -166,17 +167,11 @@
       border-color: transparent;
     }
 
-    .pill-primary:hover {
-      background: var(--color-primary-hover);
-    }
+    .pill-primary:hover { background: var(--color-primary-hover); }
 
     main { padding: var(--space-10) 0; }
-
     .section { padding: var(--space-8) 0; }
-
-    .section + .section {
-      border-top: 1px solid var(--color-divider);
-    }
+    .section + .section { border-top: 1px solid var(--color-divider); }
 
     h1, h2, h3 {
       margin: 0;
@@ -184,8 +179,7 @@
     }
 
     h1, h2 { font-family: var(--font-display); }
-
-    h1 { font-size: clamp(2rem,1.2rem + 2vw,3.5rem); }
+    h1 { font-size: clamp(2rem, 1.2rem + 2vw, 3.5rem); }
     h2 { font-size: var(--text-xl); }
     h3 { font-size: var(--text-lg); }
 
@@ -202,22 +196,47 @@
       padding: var(--space-6);
     }
 
-    .grid-2,
     .grid-3 {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--space-4);
     }
 
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .member-card {
+      display: flex;
+      flex-direction: column;
     }
 
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-5);
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+    }
+
+    .member-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-5);
+      color: var(--color-text-muted);
+      background: var(--color-surface-2);
+      border: 1px dashed var(--color-border);
+      font-size: var(--text-sm);
+      text-align: center;
+      padding: var(--space-4);
     }
 
     .tag {
       display: inline-flex;
+      align-self: flex-start;
       padding: .35rem .7rem;
       border-radius: var(--radius-full);
       font-size: var(--text-xs);
@@ -236,12 +255,9 @@
         flex-direction: column;
         align-items: flex-start;
       }
-      .nav,
-      .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
-        width: 100%;
-      }
+
+      .nav { width: 100%; }
+      .grid-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -274,72 +290,102 @@
   </header>
 
   <main class="container">
-
     <section class="section">
       <span class="tag">Members</span>
       <h1>Network Members</h1>
-      <p style="margin-top:1rem;max-width:60ch;">
+      <p style="margin-top:1rem; max-width:60ch;">
         The network is in its early stages. This page will grow as steering group members,
         collaborators and partner institutions are confirmed.
       </p>
     </section>
 
     <section class="section">
-      <h2 style="margin-bottom:1rem;">Chair and Co-Chairs</h2>
-      <div class="grid-2">
-        <div class="card">
-          <span class="tag">Chair &amp; Founder</span>
-          <h3>Dr. Sathyavani Subbarao</h3>
+      <h2 style="margin-bottom:1rem;">Co-Chairs</h2>
+      <p style="margin-bottom:1.5rem; max-width:60ch;">
+        The Maternal Infection Network is led collaboratively by seven Co-Chairs.
+      </p>
+
+      <div class="grid-3">
+
+        <!-- 1 of 7: YOUR PHOTO FILE SHOULD BE CALLED PhotoVS.jpg AND STORED IN images/. -->
+        <article class="card member-card">
+          <img class="member-photo" src="images/PhotoVS.jpg" alt="Dr Sathyavani Subbarao">
+          <span class="tag">Co-Chair &amp; Founder</span>
+          <h3>Dr Sathyavani Subbarao</h3>
           <p style="margin-top:.6rem;">
-            Specialist Registrar in Medical Microbiology and Infectious Diseases and chair of the
-            Maternal Infection Network.
+            Specialist Registrar in Medical Microbiology and Infectious Diseases and founder of the Maternal Infection Network.
           </p>
           <p style="margin-top:1rem;">
-            Her clinical and academic interests include antimicrobial pharmacokinetics and
-            pharmacodynamics in pregnancy, antimicrobial resistance, and managing difficult-to-treat
-            infections such as bone and joint infections.
+            Her clinical and academic interests include antimicrobial pharmacokinetics and pharmacodynamics in pregnancy, antimicrobial resistance, and managing difficult-to-treat infections such as bone and joint infections.
           </p>
-        </div>
+        </article>
 
-        <div class="card">
+        <!-- 2 of 7: TRUPTI'S PHOTO FILE SHOULD BE CALLED PhotoTP.jpg AND STORED IN images/. -->
+        <article class="card member-card">
+          <img class="member-photo" src="images/PhotoTP.jpg" alt="Dr Trupti Patel">
           <span class="tag">Co-Chair</span>
-          <h3>Dr. [Name]</h3>
-          <p style="margin-top:.6rem;">Role / institution.</p>
-          <p style="margin-top:1rem;">
-            Short description of clinical and academic interests.
+          <h3>Dr Trupti Patel</h3>
+          <p style="margin-top:.6rem;">
+            Consultant in Infectious Diseases and Microbiology, University College London Hospitals NHS Foundation Trust; Consultant Microbiologist, UK Health Security Agency.
           </p>
-        </div>
+          <p style="margin-top:1rem;">
+            Dr Patel has been a Consultant in Infectious Diseases and Microbiology for ten years and has been based at University College London Hospital for the past six years. She also works as a Consultant Microbiologist at UKHSA in the HCAI/AMR division, principally supporting the Infection Control team.
+          </p>
+          <p style="margin-top:1rem;">
+            In her NHS role, she is Clinical Lead for Microbiology and Infection Control Doctor for UCLH, as well as for numerous community sites across North London Foundation Trust and Central and North West London NHS Foundation Trust.
+          </p>
+          <p style="margin-top:1rem;">
+            Her interests include infection in critically ill patients, healthcare-associated infection prevention, and the role of the built environment—particularly water—in healthcare-associated infections. Her PhD at Imperial College London examined toll-like receptors in cardiac dysfunction in bacterial sepsis.
+          </p>
+          <p style="margin-top:1rem;">
+            A member of the British Infection Association since training, she chaired the Clinical Services Committee from 2023 to 2026, contributing to service-delivery improvement, standard-setting and collaboration across infection specialties.
+          </p>
+        </article>
 
-        <div class="card">
+        <!-- 3 of 7 -->
+        <article class="card member-card">
+          <div class="member-photo-placeholder">Photograph to follow</div>
+          <!-- To add a photo later, replace the line above with: <img class="member-photo" src="images/jane-currie.jpg" alt="Dr Jane Currie"> -->
           <span class="tag">Co-Chair</span>
-          <h3>Dr. [Name]</h3>
-          <p style="margin-top:.6rem;">Role / institution.</p>
-          <p style="margin-top:1rem;">
-            Short description of clinical and academic interests.
-          </p>
-        </div>
+          <h3>Dr Jane Currie</h3>
+        </article>
 
-        <div class="card">
+        <!-- 4 of 7 -->
+        <article class="card member-card">
+          <div class="member-photo-placeholder">Photograph to follow</div>
+          <!-- To add a photo later, replace the line above with: <img class="member-photo" src="images/catriona-waitt.jpg" alt="Professor Catriona Waitt"> -->
           <span class="tag">Co-Chair</span>
-          <h3>Dr. [Name]</h3>
-          <p style="margin-top:.6rem;">Role / institution.</p>
-          <p style="margin-top:1rem;">
-            Short description of clinical and academic interests.
-          </p>
-        </div>
+          <h3>Professor Catriona Waitt</h3>
+        </article>
+
+        <!-- 5 of 7 -->
+        <article class="card member-card">
+          <div class="member-photo-placeholder">Photograph to follow</div>
+          <!-- To add a photo later, replace the line above with: <img class="member-photo" src="images/irasha-harding.jpg" alt="Dr Irasha Harding"> -->
+          <span class="tag">Co-Chair</span>
+          <h3>Dr Irasha Harding</h3>
+        </article>
+
+        <!-- 6 of 7 -->
+        <article class="card member-card">
+          <div class="member-photo-placeholder">Photograph to follow</div>
+          <!-- To add a photo later, replace the line above with: <img class="member-photo" src="images/kavita-sethi.jpg" alt="Dr Kavita Sethi"> -->
+          <span class="tag">Co-Chair</span>
+          <h3>Dr Kavita Sethi</h3>
+        </article>
+
+        <!-- 7 of 7 -->
+        <article class="card member-card">
+          <div class="member-photo-placeholder">Photograph to follow</div>
+          <!-- To add a photo later, replace the line above with: <img class="member-photo" src="images/rachel-taggart.jpg" alt="Dr Rachel Taggart"> -->
+          <span class="tag">Co-Chair</span>
+          <h3>Dr Rachel Taggart</h3>
+        </article>
+
       </div>
     </section>
 
-    <section class="section">
-      <div class="card">
-        <h2>Future members</h2>
-        <p style="margin-top:.6rem;">
-          As the network develops, this page can list steering group members, collaborators,
-          trainees and partner organisations, with short descriptions of their roles and interests.
-        </p>
-      </div>
-    </section>
-
+    
   </main>
 
   <footer class="footer container">
@@ -348,19 +394,23 @@
   </footer>
 
   <script>
-    (function(){
+    (function () {
       const root = document.documentElement;
       const toggle = document.querySelector('[data-theme-toggle]');
       let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
       root.setAttribute('data-theme', theme);
-      function iconFor(mode){
+
+      function iconFor(mode) {
         return mode === 'dark'
           ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
           : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
       }
+
       toggle.innerHTML = iconFor(theme);
       toggle.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
-      toggle.addEventListener('click', function(){
+
+      toggle.addEventListener('click', function () {
         theme = theme === 'dark' ? 'light' : 'dark';
         root.setAttribute('data-theme', theme);
         toggle.innerHTML = iconFor(theme);
@@ -370,3 +420,5 @@
   </script>
 </body>
 </html>
+
+
